@@ -32,10 +32,10 @@ spec:
     - name: main
       resources:
         limits:
-          cpu: '4'
-          memory: 32Gi
+          cpu: '2'
+          memory: 12Gi
           nvidia.com/gpu: '1'
         requests:
-          cpu: '1'
+          cpu: '500m'
           memory: 8Gi
           nvidia.com/gpu: '1'
