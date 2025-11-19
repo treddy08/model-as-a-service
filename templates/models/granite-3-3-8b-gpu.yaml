@@ -3,7 +3,8 @@ kind: LLMInferenceService
 metadata:
   annotations:
     openshift.io/display-name: granite-3-3-8b
-    serving.kserve.io/deploymentMode: RawDeployment
+    alpha.maas.opendatahub.io/tiers: '[]'
+    argocd.argoproj.io/sync-wave: "2"
   name: granite-3-3-8b
   labels:
     opendatahub.io/dashboard: 'true'
@@ -13,12 +14,20 @@ spec:
     uri: 'oci://quay.io/redhat-ai-services/modelcar-catalog:granite-3.3-2b-instruct'
   replicas: 1
   router:
+    route: { }
+    # Connect to MaaS-enabled gateway
     gateway:
       refs:
         - name: maas-default-gateway
           namespace: openshift-ingress
-    route: {}
   template:
+    # Ensure the pod is scheduled on GPU nodes
+    nodeSelector:
+      nvidia.com/gpu.present: "true"
+    tolerations:
+      - effect: NoSchedule
+        key: nvidia.com/gpu
+        operator: Exists
     containers:
       - image: 'registry.redhat.io/rhoai/odh-vllm-cpu-rhel9@sha256:bae57975dfe153afc799e868e6a27ec1e502f68d4337a74dc6455a6bc326d02c'
         livenessProbe:
@@ -33,8 +42,10 @@ spec:
         name: main
         resources:
           limits:
-            cpu: '4'
-            memory: 32Gi
-          requests:
             cpu: '2'
-            memory: 16Gi
+            memory: 12Gi
+            nvidia.com/gpu: '1'
+          requests:
+            cpu: '500m'
+            memory: 8Gi
+            nvidia.com/gpu: '1'
