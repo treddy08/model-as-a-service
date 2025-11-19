@@ -8,7 +8,7 @@ metadata:
     authorino.kuadrant.io/managed-by: authorino
   annotations:
     user.authorino.kuadrant.io/userid: "maas-user"
-    user.authorino.kuadrant.io/groups: "tier-premium-users1"
+    user.authorino.kuadrant.io/groups: "tier-premium-users"
     sync.argoproj.io/sync-wave: "1"
 type: Opaque
 {{- if $existingSecret }}
