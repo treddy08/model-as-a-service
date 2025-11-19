@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: llminferenceservice-access
+  namespace: llm
+rules:
+  - apiGroups:
+      - serving.kserve.io
+    resources:
+      - llminferenceservices
+    verbs:
+      - get      # View the service details
+      - list     # List available services
+      - watch    # Watch for changes
+      - post
