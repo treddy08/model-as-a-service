@@ -23,8 +23,7 @@ spec:
     authentication:
       api-key-auth:
         apiKey:
-          namespaces:
-            - maas-api-keys
+          allNamespaces: true
           selector:
             matchLabels:
               authorino.kuadrant.io/managed-by: authorino
