@@ -3,7 +3,6 @@ kind: HTTPRoute
 metadata:
   name: maas-api-route
   labels:
-    {{- include "maas-api.labels" . | nindent 4 }}
     {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}

@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: maas-api
   labels:
-    {{- include "maas-api.labels" . | nindent 4 }}
     {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -11,7 +10,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
-    {{- include "maas-api.labels" . | nindent 4 }}
     {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}

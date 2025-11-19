@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: maas-api
   labels:
-    {{- include "maas-api.labels" . | nindent 4 }}
     {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -13,14 +12,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "maas-api.labels" . | nindent 6 }}
       {{- with .Values.commonLabels }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
   template:
     metadata:
       labels:
-        {{- include "maas-api.labels" . | nindent 8 }}
         {{- with .Values.commonLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
