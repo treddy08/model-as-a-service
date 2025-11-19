@@ -9,7 +9,6 @@ metadata:
   labels:
     app: maas-api
     component: tier-mapping
-    {{- include "maas-api.labels" . | nindent 4 }}
     {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
