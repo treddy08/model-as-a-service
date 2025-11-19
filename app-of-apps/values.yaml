@@ -1,3 +1,11 @@
-maasrepoURL: https://github.com/treddy08/model-as-a-service.git
+repoURL: https://github.com/treddy08/model-as-a-service.git
 targetRevision: main
-clusterDomain: apps.cluster-7d86.7d86.sandbox246.opentlc.com
+
+maas-api:
+  clusterDomain: apps.cluster-7d86.7d86.sandbox246.opentlc.com
+
+redhat-connectivity-link:
+  operator:
+    channel: stable
+    installPlanApproval: Automatic
+    startingCSV: rhcl-operator.v1.2.0
