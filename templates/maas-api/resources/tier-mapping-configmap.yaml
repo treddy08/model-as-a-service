@@ -19,7 +19,6 @@ data:
       level: 0
       groups:
         - tier-free-users
-        - system:authenticated  # Default for all authenticated users
 
     # Premium tier - for premium users
     - name: premium
