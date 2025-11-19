@@ -1,10 +1,8 @@
-{{- $existingSecret := lookup "v1" "Secret" "maas-api-keys" "api-key-maas-user" }}
-{{- if not $existingSecret }}
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: api-key-maas-user
+  name: api-key-{{ .Values.maasUser.username }}
   namespace: maas-api-keys
   labels:
     authorino.kuadrant.io/managed-by: authorino
@@ -17,5 +15,4 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 type: Opaque
 stringData:
-  api_key: "{{ randAlphaNum 20 }}"
-{{- end }}
+  api_key: "{{ .Values.maasUser.apiKey }}"
