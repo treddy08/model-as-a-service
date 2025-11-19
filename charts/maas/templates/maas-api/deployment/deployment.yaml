@@ -27,7 +27,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: maas-api
-        image: maas-api
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
